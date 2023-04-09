@@ -35,7 +35,7 @@ int main(){
     
     /* Create Window */
     SetTargetFPS(60);
-    InitWindow(WIDTH, HIEGHT, "Brain's Brain");
+    InitWindow(WIDTH, HIEGHT, "Day and Night");
     
     
     while(!WindowShouldClose())
