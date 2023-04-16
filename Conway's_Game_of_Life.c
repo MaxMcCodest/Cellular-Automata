@@ -8,10 +8,10 @@ struct Camera{
 };
 
 #define WIDTH 1280
-#define HIEGHT 720
+#define HEIGHT 720
 
-int pixels[HIEGHT][WIDTH];
-int pixelsToShow[HIEGHT][WIDTH];
+int pixels[HEIGHT][WIDTH];
+int pixelsToShow[HEIGHT][WIDTH];
 
 int main(){
     
@@ -21,7 +21,7 @@ int main(){
     struct Camera cam = (struct Camera){.position = (Vector2){0,0}, .speed = 4, .zoomSpeed = 0.1, .zoom = 1};
     
     /* Initialize Pixel Values */
-    for(int y = HIEGHT; y > 0; y--){
+    for(int y = HEIGHT; y > 0; y--){
         for(int x = WIDTH; x > 0; x--){
             pixels[y - 1][x - 1] = rand() % 2;
         }
@@ -35,7 +35,7 @@ int main(){
     
     /* Create Window */
     SetTargetFPS(60);
-    InitWindow(WIDTH, HIEGHT, "Conway's Game of Life");
+    InitWindow(WIDTH, HEIGHT, "Conway's Game of Life");
     
     while(!WindowShouldClose())
     {
@@ -50,7 +50,7 @@ int main(){
         else if(cam.zoom > 6) cam.zoom = 6;
         
         /* Rules */
-        for(int y = HIEGHT; y > 0; y--){
+        for(int y = HEIGHT; y > 0; y--){
             for(int x = WIDTH; x > 0; x--){
                 int pix = pixels[y - 1][x - 1];
                 if(pix == 0 && MooreNeighborhood(x - 1, y - 1) == 3) pixelsToShow[y - 1][x - 1] = 1;
@@ -60,7 +60,7 @@ int main(){
         }
         
         /* Draw Pixels */
-        for(int y = HIEGHT; y > 0; y--){
+        for(int y = HEIGHT; y > 0; y--){
             for(int x = WIDTH; x > 0; x--){
                 pixels[y - 1][x - 1] = pixelsToShow[y - 1][x - 1];
                 
@@ -86,14 +86,14 @@ MooreNeighborhood(int x, int y){
         topLeftX = WIDTH - 1;
     }
     if(topLeftY < 0){
-        topLeftY = HIEGHT - 1;
+        topLeftY = HEIGHT - 1;
     }
     
     /* Top Middle */
     int topMiddleX = x;
     int topMiddleY = y - 1;
     if(topMiddleY < 0){
-        topMiddleY = HIEGHT - 1;
+        topMiddleY = HEIGHT - 1;
     }
     
     /* Top Right */
@@ -103,7 +103,7 @@ MooreNeighborhood(int x, int y){
         topRightX = 1;
     }
     if(topRightY < 0){
-        topRightY = HIEGHT - 1;
+        topRightY = HEIGHT - 1;
     }
     
     //-------------------------------------------------
@@ -130,14 +130,14 @@ MooreNeighborhood(int x, int y){
     if(bottomLeftX < 1){
         bottomLeftX = WIDTH - 1;
     }
-    if(bottomLeftY > HIEGHT - 1){
+    if(bottomLeftY > HEIGHT - 1){
         bottomLeftY = 0;
     }
     
     /* Bottom Middle */
     int bottomMiddleX = x;
     int bottomMiddleY = y + 1;
-    if(bottomMiddleY > HIEGHT - 1){
+    if(bottomMiddleY > HEIGHT - 1){
         bottomMiddleY = 0;
     }
     
@@ -147,7 +147,7 @@ MooreNeighborhood(int x, int y){
     if(bottomRightX > WIDTH - 1){
         bottomRightX = 1;
     }
-    if(bottomRightY > HIEGHT){
+    if(bottomRightY > HEIGHT){
         bottomRightY = 1;
     }
     
